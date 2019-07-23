@@ -24,8 +24,11 @@ def parse(request):
     msg = "**[%s](%s)**\n\n" % (j["title"], j.get("ruleUrl", ""))
 
     if "evalMatches" in j:
+        tab = "Metric | Value\n"
+        tab += "--- | ---\n"
         for metric in j["evalMatches"]:
-            msg += "%s - %s\n\n" % (metric["metric"], metric["value"])
+            tab += "%s | %s\n" % (metric["metric"], metric["value"])
+        msg += tab + "\n"
 
     if "imageUrl" in j:
         msg += "![](%s)" % j["imageUrl"]
